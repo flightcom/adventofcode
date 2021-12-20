@@ -1,0 +1,189 @@
+2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2
+A----------------------------------
+    B----------- C-----------
+                     D-----
+
+
+3 3 1 3 0 2 7 4 10 11 12 0 1 70 1 1 0 1 99 2 1 1 2
+A-------------------------------------------------
+    B------------------- F----- C-----------
+        E------                     D-----
+
+
+3 3 1 3 0 1 2 1 11 12 0 1 70 1 1 0 1 99 2 1 1 3
+A----------------------------------------------
+    B---------------- F----- C-----------
+        G----                    D-----
+
+
+
+
+
+
+2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2
+A----------------------------------
+    B----------- C-----------      
+                     D-----        
+
+process child #1
+
+V[0] += 33
+V[0] += 33
+
+1 3 1 1 0 1 99 2 2
+A-----------------
+    C-----------      
+        D-----        
+
+process child #2
+
+metadataentry > #child => remove
+
+
+        v
+3 3 1 3 0 1 2 1 11 12 0 1 70 1 1 0 1 99 2 1 1 2
+A-----------------------------------------------
+    B---------------- F----- C-----------
+        G----                    D-----
+
+
+> process child #1
+
+index = 4
+node = liste[index:index+2+liste[index+1]]
+node_value = sum(liste[index+2:index+2+liste[index+1]])
+
+> check parent
+
+parent = node[index-2]
+
+        v
+3 3 0 3 2 0 0 0 1 70 1 1 0 1 99 2 1 1 2
+A----------------------------------------
+    B-------- F----- C-----------
+                         D-----
+
+
+if (len([m for m in metadataentries if x == 1]) > 0):
+    V[4+removed] = 0
+    V[2+removed] = sum([V[4+removed] for x in metadataentries if x == 1])
+    liste = [l for i, l in enumerate(liste) if i not in range(index, index+2+liste[index+1])]
+
+removed += len(child)
+
+    v
+2 3 0 1 70 1 1 0 1 99 2 1 1 2
+A----------------------------
+    F----- C-----------
+               D-----
+
+V[2+removed] = 
+
+
+    v
+3 3 0 3 1 11 12 0 1 70 0 1 2 1 1 2
+A---------------------------------
+    B---------- F----- C----
+
+removed = 0
+
+index = 2
+node = [index:index+2+liste[index+1]]
+V[removed+index=2] = 24
+length = len(node)
+# length = 5
+removed += len(node)
+# removed = 5
+liste = [l for i, l in enumerate(liste) if i not in range(index, index+2+liste[index+1])]
+
+    v
+3 3 0 1 70 0 1 2 1 1 2
+A---------------------
+    F----- C----
+
+index = 2
+V[removed+index=7] = 70
+length = len(node)
+# length = 3
+removed += len(node)
+# removed = 8
+liste = [l for i, l in enumerate(liste) if i not in range(index, index+2+liste[index+1])]
+
+    v
+3 3 0 1 2 1 1 2
+A--------------
+    C----
+
+index = 2
+V[removed+index=10] = 2
+length = len(node)
+# length = 3
+removed += len(node)
+# removed = 11
+liste = [l for i, l in enumerate(liste) if i not in range(index, index+2+liste[index+1])]
+
+    
+3 3 1 1 2
+A--------
+    
+
+index = 2
+V[removed+index=13] = 2
+length = len(node)
+# length = 3
+removed += len(node)
+# removed = 11
+liste = [l for i, l in enumerate(liste) if i not in range(index, index+2+liste[index+1])]
+
+
+
+    v
+3 3 0 3 1 11 12 0 1 70 0 1 2 1 1 2
+A---------------------------------
+    B---------- F----- C----
+
+index = 2
+node = [index:index+2+liste[index+1]]
+V[index=2] = 24
+length = len(node)
+# length = 5
+liste = [l for i, l in enumerate(liste) if i not in range(index, index+length) else False]
+
+              v
+2 3 F F F F F 0 1 70 0 1 2 1 1 2
+A-------------------------------
+    B-------- F----- C----
+
+index = 7
+node = [index:index+2+liste[index+1]]
+V[index] = sum(node[2:]) = 70
+length = len(node)
+# length = 3
+liste = [l for i, l in enumerate(liste) if i not in range(index, index+length) else False]
+
+                    v
+1 3 F F F F F F F F 0 1 2 1 1 2
+A------------------------------
+    B-------- F---- C----
+
+index = 10
+node = [index:index+2+liste[index+1]]
+V[index] = sum(node[2:]) = 2
+length = len(node)
+# length = 3
+liste = [l for i, l in enumerate(liste) if i not in range(index, index+length) else False]
+
+v
+0 3 F F F F F F F F F F F 1 1 2
+A------------------------------
+    B-------- F---- C----
+
+index = 0
+value = sum(node[2:]) = 0
+V[index] = value
+if value == 0: # that means it is a former non-leaf node and children had been processed
+    end = min([i for i, n in enumerate(liste) if n != 2 and i > index + 1])) + liste[index+1]
+    node = [index:end]
+    child_count = [x for i, x in enumerate(V) if i > index and i < index + 2+ ]
+    
+length = len(node)
