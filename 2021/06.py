@@ -67,8 +67,8 @@ def part1():
     print(len(fish))
     while days < 80:
         fish2 = fish
-        fish = [x-1 if x > 0 else 6 for x in fish]
-        print([9 for x in fish2 if x == 0])
+        fish = [x-1 if x > 0 else 6 for x in fish].append([9 for x in fish2 if x == 0])
+        # print([9 for x in fish2 if x == 0])
         # for i, x in enumerate(fish):
         #     if x == 0:
         #         fish.append(9)
